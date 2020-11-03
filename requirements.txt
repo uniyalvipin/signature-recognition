@@ -1,0 +1,6 @@
+numpy
+gunicorn
+scipy
+sklearn
+flask
+pillow

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signature Verification System</title>
+</head>
+<body>
+<p>Hello there, upload 3 signature in png or jpg form below</p>
+<form action = "/upload" method = "post" enctype="multipart/form-data">
+    <p>Enter customer ID</p>
+    <br>
+    <input type="text" name="customerID" placeholder="Customer ID">
+    <br>
+    <p>Upload 3 signature images</p>
+    <br>
+    <input type="file" name="images" multiple>
+    <br>
+    <input type = "submit" value="Upload">
+</form>
+
+
+<br>
+<br>
+<br>
+
+<form action="/verify" method="post" enctype="multipart/form-data">
+    <p>Enter customer ID</p>
+    <br>
+    <input type="text" name="customerID" placeholder="Customer ID">
+    <br>
+    <p>Upload test signature</p>
+    <br>
+    <input type="file" name="newSignature">
+    <br>
+    <input type="submit" value="Verify">
+</form>
+
+</body>
+</html>
