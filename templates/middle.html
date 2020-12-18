@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signature Verification System</title>
+</head>
+<body>
+<p>Uploaded Images</p>
+
+<img src="/img1" height="10%" width="10%" alt=" ">
+<img src="/img2" height="10%" width="10%" alt=" ">
+<img src="/img3" height="10%" width="10%" alt=" ">
+
+<br>
+<br>
+<br>
+
+<form action="/verify" method="post" enctype="multipart/form-data">
+    <p>Enter customer ID</p>
+    <br>
+    <input type="text" name="customerID" placeholder="Customer ID">
+    <br>
+    <p>Upload test signature</p>
+    <br>
+    <input type="file" name="newSignature">
+    <br>
+    <input type="submit" value="Verify">
+</form>
+
+</body>
+</html>

@@ -9,13 +9,14 @@ import json
 import math
 import os
 
+imageid=None
+
 app = Flask(__name__)
 
 images_folder = os.path.join('static', 'test_image')
 
 app.config['UPLOAD_FOLDER'] = images_folder
 
-customer_id = None
 
 def load_model():
     device = torch.device('cpu')
@@ -54,8 +55,9 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload():
     files = request.files.getlist('images')
-    global customer_id
     customer_id = request.form['customerID']
+    global imageid
+    imageid=customer_id
     print(customer_id)
     try:
         conn = connect_to_db()
@@ -66,33 +68,31 @@ def upload():
         query = """INSERT INTO signatures VALUES(?,?,?,?)"""
         cursor.execute(query, (customer_id, files[0].read(), files[1].read(), files[2].read()))
         conn.commit()
-        return render_template("index.html")
+
+        return render_template('middle.html')
     except Exception as e:
         print(e)
 
+@app.route('/img1')
+def i1():
+    images=get_file_from_db(imageid)
+    return Response(images[0],mimetype='image/jpg')
 
-@app.route('/image1/uploaded')
-def uploaded_image1():
-    image_data = get_file_from_db(customer_id)
-    return Response(image_data[0], mimetype='image/jpeg')
+@app.route('/img2')
+def i2():
+    images=get_file_from_db(imageid)
+    return Response(images[1],mimetype='image/jpg')
 
+@app.route('/img3')
+def i3():
+    images=get_file_from_db(imageid)
+    return Response(images[2],mimetype='image/jpg')
 
-@app.route('/image2/uploaded')
-def uploaded_image2():
-    image_data = get_file_from_db(customer_id)
-    return Response(image_data[1], mimetype='image/jpeg')
-
-
-@app.route('/image3/uploaded')
-def uploaded_image3():
-    image_data = get_file_from_db(customer_id)
-    return Response(image_data[2], mimetype='image/jpeg')
-
+imageid=None
 
 @app.route('/verify', methods=['POST'])
 def verify():
     try:
-        global customer_id
         customer_id = request.form['customerID']
         file=request.files['newSignature']
         path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
