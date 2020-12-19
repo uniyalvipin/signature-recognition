@@ -1,31 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html' %}
+
+{% block navcontents %}
+    <a href="./">Home</a>
+    <a href="./about">Description</a>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upes.css') }}">
     <meta charset="UTF-8">
-    <title>Signature Verification System</title>
-</head>
-<body>
-<p>Uploaded Images</p>
+    <title>Result</title>
+{% endblock %}
 
-<img src="/img1" height="10%" width="10%" alt=" ">
-<img src="/img2" height="10%" width="10%" alt=" ">
-<img src="/img3" height="10%" width="10%" alt=" ">
 
-<br>
-<br>
-<br>
+{% block body %}
+    <div class="desc">
+        <h3>
+        Uploaded Images
+        <br><br>
+        <img src="/img1" height=95px width= 100px alt=" ">
+        <img src="/img2" height=95px width= 100px alt=" ">
+        <img src="/img3" height=95px width= 100px alt=" ">   
+        </h3>
+    </div>
 
-<form action="/verify" method="post" enctype="multipart/form-data">
-    <p>Enter customer ID</p>
-    <br>
-    <input type="text" name="customerID" placeholder="Customer ID">
-    <br>
-    <p>Upload test signature</p>
-    <br>
-    <input type="file" name="newSignature">
-    <br>
-    <input type="submit" value="Verify">
-</form>
-
-</body>
-</html>
+    <div class="form" style="text-align: center;vertical-align: middle; margin:auto;">    
+        <form action="/verify" method="post" enctype="multipart/form-data">
+            <p>
+                Enter customer ID
+                <input type="text" name="customerID" placeholder="Customer ID">
+                Upload test signature
+                <div class="upload">
+                    <button class="btn">Upload Test Signature</button>
+                    <input type="file" name="newSignature">
+                  </div>
+            </p>
+            <input type="submit" value="Verify">
+        </form>
+    </div>
+{% endblock %}

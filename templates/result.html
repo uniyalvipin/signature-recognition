@@ -1,33 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Result</title>
-</head>
-<body>
-<p>Signature Verification</p>
-<br>
-<p>
-    Images Uploaded!!
-    <br>
-    <br>
-    <br>
-    <br>
-    Signature image check:
-    <br>
-    <img src="{{file}}" height="10%" width="10%" alt=" ">
-    <br>
-    <br>
-    match={{match}}
-    <br>
-    threshold={{threshold}}
-    <br>
-    distance={{distance}}
-</p>
+{% extends 'base.html' %}
 
-<form action = "/">
-    <input type = "submit" value="Go to Home">
-</form>
+{% block navcontents %}
+    <a href="./">Home</a>
+    <a href="./about">Description</a>
+{% endblock %}
 
-</body>
-</html>
+{% block head %}
+
+<link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Result</title>
+
+{% endblock %}
+    
+
+
+{% block body %}
+    <div class="form" style="margin:auto; text-align: center;">
+        <h2>Signature Verification</h2>
+        <p>
+            Images Uploaded!
+            <br>
+            Signature image check:
+            <img src="{{file}}" height=100% width="100%" alt=" ">
+        </p>
+        <p style="text-align:left; margin-left: 20px;">
+            match&emsp;&emsp;&emsp;= {{match}}
+            <br>
+            threshold&emsp;&nbsp;&nbsp;= {{threshold}}
+            <br>
+            distance&emsp;&emsp;= {{distance}}
+        </p>
+
+        <form action = "/">
+            <input type = "submit" value="Go to Home">
+        </form>
+    </div>
+{% endblock %}

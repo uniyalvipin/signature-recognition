@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html' %}
+
+{% block navcontents %}
+    <a class="active" href="./">Home</a>
+    <a href="./about">Description</a>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
     <meta charset="UTF-8">
     <title>Signature Verification System</title>
-</head>
-<body>
-<p>Hello there, upload 3 signature in png or jpg form below</p>
-<form action = "/upload" method = "post" enctype="multipart/form-data">
-    <p>Enter customer ID</p>
-    <br>
-    <input type="text" name="customerID" placeholder="Customer ID">
-    <br>
-    <p>Upload 3 signature images</p>
-    <br>
-    <input type="file" name="images" multiple>
-    <br>
-    <input type = "submit" value="Upload">
-</form>
+{% endblock %}
 
-</body>
-</html>
+{% block body %}
+<div class="form" style="text-align: center;vertical-align: middle; margin:auto;">
+
+    <h2>Welcome</h2>
+    <br>
+  
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <p>
+        Enter customer ID
+        <input type="text" name="customerID" placeholder="Customer ID">
+        <br>
+        Upload 3 signature in png or jpg form below
+        <div class="upload">
+          <button class="btn">Browse Images</button>
+          <input type="file" name="images" multiple>
+        </div>
+      </p>
+      <input type="submit" value="Upload">
+    </form>
+  
+  </div>
+
+{% endblock %}
