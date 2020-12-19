@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block navcontents %}
+    <a href="./">Home</a>
+    <a class="active" href="./about">Description</a>
+{% endblock %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upes.css') }}">
+
+{% endblock %}
+
+
+{% block body %}    
+    <div class="desc">
+        <h3>
+            This website was created by:<br><br>
+            Vaibhav Tomar&emsp;&emsp;&emsp;Vinay Chaudhary&emsp;&emsp;&emsp;Vipin Uniyal&emsp;&emsp;&emsp;
+            <br><br>
+            <br><br>As a part of their college project<br>for<br><br>
+            <a href="https://www.upes.ac.in/" target="_blank">
+                <img src="/static/upes.png"/>
+            </a>
+            <br><br>
+            School of Computer Science
+            <br>
+            Department of Virtualization
+            
+        </h3>
+    </div>
+{% endblock %}
